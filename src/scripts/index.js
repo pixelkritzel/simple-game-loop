@@ -1,5 +1,5 @@
 const arena = document.getElementById('arena');
-const car = document.getElementById('car');
+const player = document.getElementById('player');
 
 const getArenaDimensions = function getArenaDimensions() {
   return {
@@ -16,55 +16,55 @@ window.addEventListener('resize', function() {
   arenaDimensions = getArenaDimensions();
 });
 
-let carCoordinates = {
-  left: parseInt(window.getComputedStyle(car).left, 10),
-  top: parseInt(window.getComputedStyle(car).top, 10)
+let playerCoordinates = {
+  left: parseInt(window.getComputedStyle(player).left, 10),
+  top: parseInt(window.getComputedStyle(player).top, 10)
 };
 
-const carDimensions = {
-  width: parseInt(window.getComputedStyle(car).width, 10),
-  height: parseInt(window.getComputedStyle(car).height, 10)
+const playerDimensions = {
+  width: parseInt(window.getComputedStyle(player).width, 10),
+  height: parseInt(window.getComputedStyle(player).height, 10)
 };
 
 const verticalSpeed = 10;
 const horizontalSpeed = 10;
 
 const updateGame = function updateGame() {
-  car.style.left = carCoordinates.left + 'px';
-  car.style.top = carCoordinates.top + 'px';
+  player.style.left = playerCoordinates.left + 'px';
+  player.style.top = playerCoordinates.top + 'px';
 };
 
 const testWallCollision = function testCollision(coordinates) {
-    const carCoordinates = { 
-        left: coordinates.left - carDimensions.width/2,
-        top: coordinates.top - carDimensions.height/2,
-        right: coordinates.left + carDimensions.width/2,
-        bottom: coordinates.top + carDimensions.height/2
+    const playerCoordinates = { 
+        left: coordinates.left - playerDimensions.width/2,
+        top: coordinates.top - playerDimensions.height/2,
+        right: coordinates.left + playerDimensions.width/2,
+        bottom: coordinates.top + playerDimensions.height/2
     };
     return (
-           arenaDimensions.left <= carCoordinates.left
-        && arenaDimensions.top <= carCoordinates.top
-        && arenaDimensions.right >= carCoordinates.right
-        && arenaDimensions.bottom >= carCoordinates.bottom
+           arenaDimensions.left <= playerCoordinates.left
+        && arenaDimensions.top <= playerCoordinates.top
+        && arenaDimensions.right >= playerCoordinates.right
+        && arenaDimensions.bottom >= playerCoordinates.bottom
     );
 };
 
 const move = function move(directions) {
-  const newCarCoodinates = { ...carCoordinates };
+  const newplayerCoodinates = { ...playerCoordinates };
   if ( directions.includes('up') ) {
-    newCarCoodinates.top = carCoordinates.top - verticalSpeed;
+    newplayerCoodinates.top = playerCoordinates.top - verticalSpeed;
   }
   if ( directions.includes('down') ) {
-    newCarCoodinates.top = carCoordinates.top + verticalSpeed;
+    newplayerCoodinates.top = playerCoordinates.top + verticalSpeed;
   }
   if ( directions.includes('left') ) {
-    newCarCoodinates.left = carCoordinates.left - horizontalSpeed;
+    newplayerCoodinates.left = playerCoordinates.left - horizontalSpeed;
   }
   if ( directions.includes('right') ) {
-    newCarCoodinates.left = carCoordinates.left + horizontalSpeed;
+    newplayerCoodinates.left = playerCoordinates.left + horizontalSpeed;
   }
-  if (testWallCollision(newCarCoodinates)) {
-      carCoordinates = newCarCoodinates;
+  if (testWallCollision(newplayerCoodinates)) {
+      playerCoordinates = newplayerCoodinates;
       window.requestAnimationFrame(updateGame);
   }
 };
