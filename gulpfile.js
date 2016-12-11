@@ -20,7 +20,7 @@ var webpack = require('webpack-stream'),
     favicons = require('gulp-favicons');
 
 /* pathConfig*/
-var entryPoint = './src/scripts/index.js',
+var entryPoint = './src/scripts/index.ts',
     browserDir = './build',
     sassWatchPath = './src/styles/**/*.scss',
     jsWatchPath = './src/scripts/**/*.js',
@@ -100,6 +100,7 @@ gulp.task('js', function () {
                     module: {
                         loaders: [
                             { test: /\.js$/, loader: 'babel' },
+                            { test: /\.ts$/, loader: 'ts-loader' },
                         ],
                     },
                     output: {
