@@ -20,3 +20,14 @@ body {
     margin-left: -67px;
     background-image: url(/static/spaceship.png);
 }
+
+#other {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+    background-color: orangered;
+    margin-top: -15px;
+    margin-left: -15px;
+}

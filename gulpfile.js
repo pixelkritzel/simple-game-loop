@@ -95,7 +95,7 @@ gulp.task('hbs', () => {
 gulp.task('js', function () {
     return gulp.src(entryPoint)
                .pipe(webpack({
-                    watch: false,
+                    watch: true,
                     devtool: 'source-map',
                     resolve: {
                         // Add '.ts' and '.tsx' as a resolvable extension.

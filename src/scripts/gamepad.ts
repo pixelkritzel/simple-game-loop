@@ -44,8 +44,8 @@ function updateStatus() {
 
     for (i = 0; i < controller.axes.length; i++) {
       callback({
-        y: controller.axes[0].toFixed(1),
-        x: controller.axes[1].toFixed(1) 
+        x: controller.axes[0].toFixed(1),
+        y: controller.axes[1].toFixed(1) 
       });
       
     }
